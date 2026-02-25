@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: university_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: university_db
+      MYSQL_USER: etl_user
+      MYSQL_PASSWORD: etl_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  etl:
+    build: .
+    container_name: university_etl
+    depends_on:
+      - mysql
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    command: ["python", "-m", "src.main"]
+
+volumes:
+  mysql_data:
