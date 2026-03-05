@@ -29,11 +29,24 @@ Medallion Snapshot System: Automatically versions raw data in the /data/bronze d
 🛠️ Tech Stack
 Languages: Python 3.11, SQL
 
-Engineering: Docker, Docker Compose, SQLAlchemy
+Engineering: Docker, Docker Compose, SQLAlchemy, Apache Airflow
 
 Data Science: Pandas (Vectorized transformations)
 
 Environment: Cross-platform compatibility (Windows/Linux) via Containerization
+
+📅 Apache Airflow – Scheduling & Monitoring
+The pipeline is scheduled and monitored with Apache Airflow (LocalExecutor + PostgreSQL):
+
+- **Airflow UI**: http://localhost:8080 — login: `admin` / `admin`
+- **DAG**: `university_etl` runs daily (extract → transform → load); you can also trigger runs manually from the UI.
+- **Services**: `postgres` (Airflow metadata), `airflow-init` (one-time DB init), `airflow-webserver`, `airflow-scheduler`. The ETL runs inside the scheduler when the DAG is triggered.
+
+To run only the ETL container once (no Airflow), use the `manual` profile:
+
+```powershell
+docker compose --profile manual run --rm etl
+```
 
 🚀 Deployment Guide
 To deploy this framework in a local or cloud environment:
@@ -47,15 +60,20 @@ Configure Secrets:
 
 Rename .env.example to .env.
 
-Ensure DB_HOST is set to mysql for internal Docker networking.
+Ensure DB_HOST is set to mysql for internal Docker networking (Airflow services already use DB_HOST=mysql).
 
-Launch via Docker:
+Launch via Docker (includes MySQL, Airflow, and scheduled ETL):
 
 PowerShell
 docker compose up --build
 
+Wait for Airflow to be ready (scheduler + webserver), then open http://localhost:8080.
+
 🚀 Project structure
+
 university_etl/
+  dags/
+    university_etl_dag.py   # Airflow DAG (daily ETL)
   src/
     __init__.py
     main.py
@@ -72,5 +90,6 @@ university_etl/
   .env.example
   requirements.txt
   Dockerfile
+  Dockerfile.airflow   # Airflow image with ETL deps + src
   docker-compose.yaml
   README.md   (optional but recommended)

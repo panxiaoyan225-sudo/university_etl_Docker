@@ -10,7 +10,20 @@ from .load import load_universities
 from .models import Base
 
 
+
 def main() -> None:
+    """
+    Main entry point for the Hipo Labs University ETL pipeline.
+
+    This function orchestrates the Extract-Transform-Load (ETL) process:
+    1. Loads configuration settings (including database and logging details).
+    2. Configures logging for the pipeline.
+    3. Initializes the database connection and ensures required tables exist.
+    4. Extracts raw university data from the external source/API.
+    5. Transforms the extracted data into the desired structure and format.
+    6. Loads the transformed data into the destination database.
+    7. Logs the completion and number of rows loaded.
+    """
     config = get_config()
     logger = configure_logging(config.log_level)
 
