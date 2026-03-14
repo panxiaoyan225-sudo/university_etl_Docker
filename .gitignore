@@ -21,3 +21,11 @@ Thumbs.db
 # 4. Ignore environment variables (passwords/API keys)
 .env
 .streamlit/secrets.toml
+
+# Ignore Airflow logs and local data
+logs/
+data/
+__pycache__/
+*.pyc
+venv/
+.env

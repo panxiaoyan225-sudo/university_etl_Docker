@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
 import pandas as pd
-from sqlalchemy import Engine
+from sqlalchemy.engine import Engine
 from sqlalchemy.dialects.mysql import insert as mysql_insert
 
 from .logging_config import get_logger

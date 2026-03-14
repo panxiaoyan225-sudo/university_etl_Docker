@@ -11,19 +11,21 @@ from .models import Base
 
 
 
+# The use of 'None' in the return annotation (-> None) indicates that the function does not return any value.
 def main() -> None:
     """
-    Main entry point for the Hipo Labs University ETL pipeline.
+    The main function acts as the entry point for the ETL (Extract-Transform-Load) pipeline
+    for the Hipo Labs University project. It orchestrates the following steps:
 
-    This function orchestrates the Extract-Transform-Load (ETL) process:
-    1. Loads configuration settings (including database and logging details).
-    2. Configures logging for the pipeline.
-    3. Initializes the database connection and ensures required tables exist.
-    4. Extracts raw university data from the external source/API.
-    5. Transforms the extracted data into the desired structure and format.
-    6. Loads the transformed data into the destination database.
-    7. Logs the completion and number of rows loaded.
+    1. Loads configuration values, including database connection details and log level.
+    2. Configures logging so that pipeline progress and issues are recorded.
+    3. Establishes a database connection using SQLAlchemy, and creates the necessary tables if they do not exist yet.
+    4. Extracts raw university data from an external source/API.
+    5. Transforms this raw data into a structured dataframe suitable for database loading.
+    6. Loads the transformed data into the target database.
+    7. Logs how many records were loaded and when the pipeline completes.
     """
+    
     config = get_config()
     logger = configure_logging(config.log_level)
 

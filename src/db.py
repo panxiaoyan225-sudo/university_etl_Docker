@@ -21,5 +21,6 @@ def create_db_engine(db_config: DbConfig) -> Engine:
     return engine
 
 
-def create_session_factory(engine: Engine) -> sessionmaker[Session]:
+def create_session_factory(engine: Engine):
+    """Return a configured SQLAlchemy session factory."""
     return sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)

@@ -1,21 +1,20 @@
-# Airflow image with ETL dependencies and university_etl code for DAG execution.
-FROM apache/airflow:2.10.0
+FROM apache/airflow:2.9.0-python3.11
 
 USER root
-RUN apt-get update && apt-get install -y --no-install-recommends \
+
+RUN apt-get update && apt-get install -y \
     build-essential \
     default-libmysqlclient-dev \
     && rm -rf /var/lib/apt/lists/*
 
 USER airflow
-# Use Airflow's bundled SQLAlchemy; only add ETL deps that Airflow doesn't ship
-RUN pip install --no-cache-dir \
-    pandas==2.2.3 \
-    PyMySQL==1.1.1 \
-    python-dotenv==1.0.1 \
-    requests==2.32.3
 
-# Copy ETL source so DAG can run src.main
-COPY --chown=airflow:airflow src /opt/airflow/src
+WORKDIR /opt/airflow
 
-# DAGs are mounted at runtime via docker-compose
+COPY requirements.txt /opt/airflow/requirements.txt
+RUN pip install --no-cache-dir -r /opt/airflow/requirements.txt
+
+COPY dags /opt/airflow/dags
+COPY src /opt/airflow/src
+COPY data /opt/airflow/data
+
