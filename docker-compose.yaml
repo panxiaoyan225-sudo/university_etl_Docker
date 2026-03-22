@@ -78,20 +78,27 @@ services:
       "
 
   # 4. Airflow Webserver (UI)
+  # 4. Airflow Webserver (UI)
+  # 4. Airflow Webserver (UI)
   airflow-webserver:
     <<: *airflow-common
     container_name: university_airflow_webserver
     restart: unless-stopped
     ports:
       - "8080:8080"
-      - "8793:8793" # Expose log port
+      - "8793:8793"
+    environment:
+      # This line pulls back the DB connections and Executor settings
+      <<: *airflow-common-env
+      # This adds your new API setting on top of the others
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
     command: airflow webserver
     depends_on:
       airflow-init:
         condition: service_completed_successfully
       mysql:
         condition: service_healthy
-
+  
   # 5. Airflow Scheduler (The Brain)
   airflow-scheduler:
     <<: *airflow-common

@@ -15,14 +15,15 @@ from pathlib import Path
 _airflow_home = Path(__file__).resolve().parents[1]  # /opt/airflow
 if str(_airflow_home) not in sys.path:
     sys.path.insert(0, str(_airflow_home))
-
+# The first block (lines 6–18) ensures the script has access to the Airflow library and your custom project modules
 
 def run_university_etl() -> None:
     """Run the full university ETL pipeline (extract → transform → load)."""
     from src.main import main
     main()
+#The Task Wrapper (The Python Function)
 
-
+# with DAG(...) defines the "envelope" for the workflow
 with DAG(
     dag_id="university_etl",
     description="Hipo Labs University ETL: extract from API, transform, load to MySQL",
