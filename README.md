@@ -1,6 +1,6 @@
 # University Intelligence Framework & Automated ETL
-
 [📊 View Interactive University ETL Infographic](https://panxiaoyan225-sudo.github.io/university_etl_Docker/university_infographic.html)
+
 Technical implementations of a robust, automated data pipeline designed for high-reliability environments like government and higher education. This framework bridges the gap between architectural agility and statistical rigor through automated data quality (DQ) enforcement and containerized persistence.
 
 ## 🎯 Project Philosophy
