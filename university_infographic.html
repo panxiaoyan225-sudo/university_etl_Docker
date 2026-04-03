@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Intelligence | Docker ETL Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #FDFCFB; color: #2D3748; font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: auto; height: 320px; }
+        .material-card { background: white; border-radius: 1rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); padding: 2rem; border: 1px solid #E2E8F0; }
+        .nav-link { transition: color 0.2s; font-weight: 600; color: #4A5568; }
+        .nav-link:hover { color: #805AD5; }
+        .kpi-value { font-size: 2.5rem; font-weight: 900; line-height: 1; margin-bottom: 0.5rem; color: #805AD5; }
+        .medallion-box { padding: 1rem; border-radius: 0.75rem; text-align: center; color: white; font-weight: bold; width: 100%; transition: transform 0.2s; }
+        .medallion-box:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-[#805AD5] rounded flex items-center justify-center text-white font-bold">U</div>
+                <span class="text-xl font-black tracking-tight text-[#2D3748]">University Intelligence</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="https://github.com/panxiaoyan225-sudo/university_etl_Docker" class="nav-link text-sm uppercase tracking-wider">GitHub Repo</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-12">
+
+        <!-- Header -->
+        <header class="text-center space-y-6 max-w-4xl mx-auto">
+            <div class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-widest">Containerized Medallion Architecture</div>
+            <h1 class="text-4xl md:text-6xl font-black text-[#1A202C] leading-tight">Automated University ETL & AI Auditing</h1>
+            <p class="text-xl text-[#4A5568] leading-relaxed">
+                Transforming raw API snapshots into executive-ready "Single Source of Truth" performance metrics for Canadian Higher Education.
+            </p>
+        </header>
+
+        <!-- KPI Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="material-card border-t-4 border-[#805AD5] text-center">
+                <div class="kpi-value text-[#805AD5]">Airflow</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-xs">Orchestration Engine</p>
+                <p class="text-xs text-gray-400 mt-2">Daily Automated Extraction & Monitoring</p>
+            </div>
+            <div class="material-card border-t-4 border-[#3182CE] text-center">
+                <div class="kpi-value text-[#3182CE]">Docker</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-xs">Environment Stack</p>
+                <p class="text-xs text-gray-400 mt-2">Multi-Container (MySQL/Postgres/Airflow)</p>
+            </div>
+            <div class="material-card border-t-4 border-[#38A169] text-center">
+                <div class="kpi-value text-[#38A169]">100%</div>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-xs">Schema Integrity</p>
+                <p class="text-xs text-gray-400 mt-2">Fail-Fast Logic in Transformation Layer</p>
+            </div>
+        </section>
+
+        <!-- Architecture Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Data Stack Performance -->
+            <div class="material-card flex flex-col h-full">
+                <h3 class="text-2xl font-bold text-[#2D3748] mb-2">Pipeline Resilience Analysis</h3>
+                <p class="text-slate-500 text-sm mb-8">Balancing API latency with vectorized transformation efficiency.</p>
+                
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <span class="block text-xs font-bold text-slate-400 uppercase">Bronze Layer</span>
+                        <span class="text-sm font-semibold">Raw Immutable JSON</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <span class="block text-xs font-bold text-slate-400 uppercase">Silver Layer</span>
+                        <span class="text-sm font-semibold">Clean MySQL Upserts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipeline Flow -->
+            <div class="material-card">
+                <h3 class="text-2xl font-bold text-[#2D3748] mb-8">The Medallion Workflow</h3>
+                <div class="space-y-4">
+                    <div class="medallion-box bg-[#4A5568]">
+                        <span class="text-xs opacity-80 uppercase block">Step 1: Extract</span>
+                        Hipo Labs API (JSON)
+                    </div>
+                    <div class="text-center text-gray-300">↓</div>
+                    <div class="medallion-box bg-[#805AD5]">
+                        <span class="text-xs opacity-80 uppercase block">Step 2: Bronze persistence</span>
+                        Raw Snapshots (Audit Trail)
+                    </div>
+                    <div class="text-center text-gray-300">↓</div>
+                    <div class="medallion-box bg-[#3182CE]">
+                        <span class="text-xs opacity-80 uppercase block">Step 3: Transform & Validate</span>
+                        Vectorized Pandas Logic
+                    </div>
+                    <div class="text-center text-gray-300">↓</div>
+                    <div class="medallion-box bg-[#38A169]">
+                        <span class="text-xs opacity-80 uppercase block">Step 4: Silver Load</span>
+                        Optimized MySQL Production Tables
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-purple-50 rounded-lg text-xs text-purple-900 border border-purple-100 italic">
+                    "Centralized logging tracks API latency and row counts in real-time to ensure longitudinal data impact."
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Components -->
+        <section class="space-y-6">
+            <h2 class="text-3xl font-black text-[#1A202C]">Core Intelligence Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 hover:border-purple-200 transition-colors">
+                    <h4 class="font-bold text-[#805AD5] mb-2">Automated Auditor</h4>
+                    <p class="text-sm text-gray-600">Filters and validates Canadian institutional data before final persistence.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 hover:border-purple-200 transition-colors">
+                    <h4 class="font-bold text-[#3182CE] mb-2">Airflow DAG Scheduler</h4>
+                    <p class="text-sm text-gray-600">Manages daily execution cycles with built-in retry and failure monitoring.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 hover:border-purple-200 transition-colors">
+                    <h4 class="font-bold text-[#38A169] mb-2">Upsert Intelligence</h4>
+                    <p class="text-sm text-gray-600">Custom SQLAlchemy logic preventing record duplication in Silver tables.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#1A202C] text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h5 class="text-[#805AD5] font-bold uppercase tracking-widest text-sm mb-2">Technical Stack</h5>
+                <p class="text-xs text-gray-400">Docker • Airflow • Python 3.11 • SQLAlchemy • Pandas • MySQL</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-sm">University Intelligence Framework v1.0</p>
+                <a href="https://github.com/panxiaoyan225-sudo/university_etl_Docker" class="text-[#805AD5] font-bold text-xs mt-1 block">Visit Repository Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['API Stability', 'Data Quality', 'Load Speed', 'Auditability', 'Resource Efficiency'],
+                datasets: [{
+                    label: 'System Performance',
+                    data: [85, 100, 90, 95, 80],
+                    backgroundColor: 'rgba(128, 90, 213, 0.2)',
+                    borderColor: '#805AD5',
+                    pointBackgroundColor: '#805AD5',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { display: true },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
