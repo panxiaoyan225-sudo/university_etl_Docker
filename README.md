@@ -1,5 +1,5 @@
 # Intelligence Framework & Automated ETL
-[📊 View ETL Infographic](https://panxiaoyan225-sudo.github.io/university_etl_Docker/university_infographic.html)
+[📊 View ETL Infographic](https://github.com/panxiaoyan225-sudo/Containerized-ETL/blob/main/university_infographic.html)
 
 Technical implementations of a robust, automated data pipeline designed for high-reliability environments like government and higher education. This framework bridges the gap between architectural agility and statistical rigor through automated data quality (DQ) enforcement and containerized persistence.
 
